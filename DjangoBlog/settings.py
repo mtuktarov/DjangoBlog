@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'django.contrib.sitemaps',
     'mdeditor',
     'haystack',
     'blog',
@@ -102,7 +101,7 @@ DATABASES = {
         'NAME': 'mtuktarov',
         'USER': 'mtuktarov',
         'PASSWORD': 'mtuktarov',
-        'HOST': 'ubuntu-linux',
+        'HOST': '127.0.0.1',
         #        'PORT': 3306,
         #        'OPTIONS': {'charset': 'utf8mb4'},
     }
