@@ -2,7 +2,7 @@
 
 from django import template
 from django.template.loader import render_to_string
-from ..models import Comment
+from ..models import SiteComment
 from blog.models import Article
 from comments.forms import CommentForm
 

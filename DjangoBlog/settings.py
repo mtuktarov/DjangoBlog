@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['*', '127.0.0.1', 'mtuktarov.ru', '192.168.1.64']
 
 SITE_ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE_ROOT = os.path.abspath(os.path.join(SITE_ROOT, '../'))
-
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 INSTALLED_APPS = [
     # 'django.contrib.admin',
     'django.contrib.admin.apps.SimpleAdminConfig',
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'debug_toolbar',
     'mdeditor',
     'haystack',
     'blog',
@@ -51,7 +52,10 @@ INSTALLED_APPS = [
     'comments',
     'oauth',
     'servermanager',
-    'compressor'
+    'compressor',
+    'todo',
+    'dal',
+    'dal_select2'
 ]
 
 MIDDLEWARE = [
@@ -61,6 +65,7 @@ MIDDLEWARE = [
     # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -74,7 +79,7 @@ ROOT_URLCONF = 'DjangoBlog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates/share_layout')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -206,7 +211,7 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'root': {
-        'level': 'INFO',
+        'level': 'DEBUG',
         'handlers': ['console', 'log_file'],
     },
     'formatters': {
@@ -224,7 +229,7 @@ LOGGING = {
     },
     'handlers': {
         'log_file': {
-            'level': 'INFO',
+            'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': 'djangoblog.log',
             'maxBytes': 16777216,  # 16 MB
@@ -240,7 +245,7 @@ LOGGING = {
             'class': 'logging.NullHandler',
         },
         'mail_admins': {
-            'level': 'ERROR',
+            'level': 'DEBUG',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         }
@@ -248,12 +253,12 @@ LOGGING = {
     'loggers': {
         'djangoblog': {
             'handlers': ['log_file', 'console'],
-            'level': 'INFO',
+            'level': 'DEBUG',
             'propagate': True,
         },
         'django.request': {
             'handlers': ['mail_admins'],
-            'level': 'ERROR',
+            'level': 'DEBUG',
             'propagate': False,
         }
     }
@@ -318,3 +323,16 @@ MDEDITOR_CONFIGS = {
         'toolbar': ["undo", "redo"]
     }
 }
+# Todo-specific settings
+# TODO_STAFF_ONLY = False
+# TODO_DEFAULT_LIST_ID = None
+# TODO_DEFAULT_ASSIGNEE = None
+# TODO_PUBLIC_SUBMIT_REDIRECT = '/'
+# TODO_ALLOW_FILE_ATTACHMENTS = True
+# TODO_LIMIT_FILE_ATTACHMENTS = [".jpg", ".gif", ".png", ".csv", ".pdf"]
+
+LOGIN_REDIRECT_URL = "todo:lists"
+TODO_STAFF_ONLY = False
+TODO_DEFAULT_LIST_SLUG = 'tickets'
+TODO_DEFAULT_ASSIGNEE = None
+TODO_PUBLIC_SUBMIT_REDIRECT = '/'

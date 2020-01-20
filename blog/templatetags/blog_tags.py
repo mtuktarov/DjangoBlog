@@ -12,7 +12,7 @@ from django.utils.encoding import force_text
 from django.shortcuts import get_object_or_404
 import hashlib
 import urllib
-from comments.models import Comment
+from comments.models import SiteComment
 from DjangoBlog.utils import cache_decorator, cache
 from django.contrib.auth import get_user_model
 from oauth.models import OAuthUser
@@ -130,7 +130,7 @@ def load_sidebar(user, linktype):
     most_read_articles = Article.objects.filter(status='p').order_by('-views')[:blogsetting.sidebar_article_count]
     dates = Article.objects.datetimes('created_time', 'month', order='DESC')
     links = Links.objects.filter(is_enable=True).filter(Q(show_type=str(linktype)) | Q(show_type='a'))
-    commment_list = Comment.objects.filter(is_enable=True).order_by('-id')[:blogsetting.sidebar_comment_count]
+    commment_list = SiteComment.objects.filter(is_enable=True).order_by('-id')[:blogsetting.sidebar_comment_count]
     unique_commment_list = []
     for comment in commment_list:
         if any(c.article.title == comment.article.title for c in unique_commment_list) and any(c.author.username == comment.author.username for c in unique_commment_list):

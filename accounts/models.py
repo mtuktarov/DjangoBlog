@@ -4,8 +4,8 @@ from django.urls import reverse
 from DjangoBlog.utils import get_current_site
 from django.utils.timezone import now
 
-
 # Create your models here.
+
 
 class BlogUser(AbstractUser):
     nickname = models.CharField('Ник', max_length=100, blank=True)

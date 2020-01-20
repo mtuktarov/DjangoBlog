@@ -7,12 +7,15 @@
           <h3><a href="{% url 'account:login' %}" rel="nofollow">Войти</a></h3>
 
         {% endif %}
-        {% if user.is_superuser %}
+
         <ul>
+          <li><a href="{% url 'todo:lists' %}" rel="nofollow">Todo список</a></li>
+          <li><a href="{% url 'todo:mine' %}">Мои задачи</a></li>
+          {% if user.is_superuser %}
           <li><a href="/admin/" rel="nofollow">Админка</a></li>
           <li><a href="{% url 'blog:refresh' %}">Очистить кеш</a></li>
+          {% endif %}
         </ul>
-    {% endif %}
     </aside>
     {% if show_search_bar %}
       <aside id="search-2" class="widget widget_search">

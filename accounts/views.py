@@ -19,7 +19,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.utils.http import is_safe_url
 from DjangoBlog.utils import send_email, get_md5, get_current_site, render_template
 from django.conf import settings
-
+from django.contrib import messages
 logger = logging.getLogger(__name__)
 
 
@@ -52,6 +52,7 @@ class RegisterView(FormView):
                            images={"logo.png": "image/png", "mail_icon.png": "image/png"})
 
             url = reverse('accounts:result') + '?type=register&id=' + str(user.id)
+            messages.success(request, f"New account created: {username}")
             return HttpResponseRedirect(url)
         else:
             return self.render_to_response({
@@ -102,11 +103,12 @@ class LoginView(FormView):
             if cache and cache is not None:
                 cache.clear()
             logger.info(self.redirect_field_name)
-
+            messages.success(self.request, 'Student created successfully.')
             auth.login(self.request, form.get_user())
             return super(LoginView, self).form_valid(form)
             # return HttpResponseRedirect('/')
         else:
+            messages.error(self.request, student_form.errors)
             return self.render_to_response({
                 'form': form
             })

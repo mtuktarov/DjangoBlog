@@ -36,6 +36,7 @@ class DjangoBlogAdminSite(AdminSite):
 
 admin_site = DjangoBlogAdminSite(name='admin')
 
+
 admin_site.register(Article, ArticlelAdmin)
 admin_site.register(Category, CategoryAdmin)
 admin_site.register(Tag, TagAdmin)
@@ -48,7 +49,7 @@ admin_site.register(EmailSendLog, EmailSendLogAdmin)
 
 admin_site.register(BlogUser, BlogUserAdmin)
 
-admin_site.register(Comment, CommentAdmin)
+admin_site.register(SiteComment, CommentAdmin)
 
 admin_site.register(OAuthUser, OAuthUserAdmin)
 admin_site.register(OAuthConfig, OAuthConfigAdmin)

@@ -17,8 +17,10 @@
     <meta charset="UTF-8"/>
     <meta name="yandex-verification" content="48da2b58c4a727c9" />
     <meta name="viewport" content="width=device-width"/>
+
     {% block header %}
     {% endblock %}
+
     <link rel="profile" href="http://gmpg.org/xfn/11"/>
 
     <!--[if lt IE 9]>
@@ -42,6 +44,13 @@
         {% block compress_css %}
         {% endblock %}
     {% endcompress %}
+<title>django-todo</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+{# Additional CSS or html head data inserted by templates here. #}
+{% block extrahead %}{% endblock extrahead %}
 </head>
 <body class="home blog custom-font-enabled">
 <div id="page" class="hfeed site">
@@ -58,10 +67,14 @@
         {% cache 36000 nav %}
           {% include 'share_layout/nav.html' %}
         {% endcache %}
-
     </header><!-- #masthead -->
     <div id="main" class="wrapper">
-
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+    <p>{{ form.non_field_errors }}</p>
 
         {% block content %}
         {% endblock %}
@@ -76,8 +89,18 @@
 
 
 <footer>
+   <!-- jQuery and Bootstrap core JS, plus Popper -->
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    {% block extra_js %}{% endblock extra_js %}
+
     {% compress js %}
-        <script type="text/javascript" src="{% static 'blog/js/jquery-3.1.1.js' %}"></script>
         <script type="text/javascript" src="{% static 'blog/js/nprogress.js' %}"></script>
         <script src="{% static 'blog/js/blog.js' %}" type="application/javascript"></script>
         <script src="{% static 'blog/js/navigation.js' %}" type="application/javascript"></script>

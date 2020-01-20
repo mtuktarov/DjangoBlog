@@ -23,6 +23,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from DjangoBlog.admin_site import admin_site
 from django.urls import include, path
+import debug_toolbar
 from django.views.generic.base import RedirectView
 
 sitemaps = {
@@ -52,6 +53,7 @@ urlpatterns = [
     url(r'^favicon\.ico$', favicon_view),
     url(r'^search', include('haystack.urls'), name='search'),
     url(r'', include('servermanager.urls', namespace='servermanager')),
+    path('todo/', include('todo.urls', namespace="todo")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

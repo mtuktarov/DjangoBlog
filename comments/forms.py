@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from .models import Comment
+from .models import SiteComment
 from django import forms
 from django.forms import ModelForm, Textarea
 from django.contrib.auth.models import User
@@ -16,7 +16,7 @@ class CommentForm(ModelForm):
     parent_comment_id = forms.IntegerField(widget=forms.HiddenInput, required=False)
 
     class Meta:
-        model = Comment
+        model = SiteComment
         fields = ['body']
         widgets = {
             'body': Textarea(attrs={'placeholder': 'Оставить комментарий (с поддержкой маркдауна)'}),

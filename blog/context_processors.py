@@ -2,7 +2,6 @@
 
 from .models import Category, Article, Tag, BlogSettings
 from DjangoBlog.utils import cache, get_blog_setting
-
 from datetime import datetime
 import logging
 

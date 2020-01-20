@@ -14,7 +14,7 @@ from DjangoBlog.utils import cache, send_email, expire_view_cache, delete_sideba
 from DjangoBlog.spider_notify import SpiderNotify
 from oauth.models import OAuthUser
 from blog.models import Article, Category, Tag, Links, SideBar, BlogSettings
-from comments.models import Comment
+from comments.models import SiteComment
 from comments.utils import send_comment_email
 import _thread
 import logging
@@ -91,7 +91,7 @@ def model_post_save_callback(sender, instance, created, raw, using, update_field
                 logger.error("notify sipder", ex)
         if not is_update_views:
             clearcache = True
-    if isinstance(instance, Comment):
+    if isinstance(instance, SiteComment):
 
         path = instance.article.get_absolute_url()
         site = get_current_site().domain

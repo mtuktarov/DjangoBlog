@@ -6,7 +6,7 @@ from django.utils.timezone import now
 
 # Create your models here.
 
-class Comment(models.Model):
+class SiteComment(models.Model):
     body = models.TextField('Текст', max_length=300)
     created_time = models.DateTimeField('Время создания', default=now)
     last_mod_time = models.DateTimeField('Время редактирования', default=now)

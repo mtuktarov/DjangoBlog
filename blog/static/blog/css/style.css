@@ -2499,3 +2499,10 @@ li #reply-title {
     vertical-align: top;
     text-align: center;
 }
+
+.entry-title a{
+    color: #21759b;
+}
+.entry-title a:hover{
+    color: #0f3647;
+}

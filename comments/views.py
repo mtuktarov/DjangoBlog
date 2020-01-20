@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Comment
+from .models import SiteComment
 from blog.models import Article
 from .forms import CommentForm
 from django.views.generic.edit import FormView
