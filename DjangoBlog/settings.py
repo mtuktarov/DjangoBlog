@@ -98,6 +98,10 @@ WSGI_APPLICATION = 'DjangoBlog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+SITE_DOMAIN_NAME = os.getenv('DJANGO_SITE_DOMAIN_NAME', 'mtuktarov.ru')
+DJANGO_SU_NAME = os.environ.get('DJANGO_SU_NAME', 'admin')
+DJANGO_SU_EMAIL = os.environ.get('DJANGO_SU_EMAIL', 'admin@admin.admin')
+DJANGO_SU_PASSWORD = os.environ.get('DJANGO_SU_PASSWORD', 'admin123')
 
 DATABASES = {
     'default': {

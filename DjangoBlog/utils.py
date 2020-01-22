@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from django.contrib.auth.models import Group, Permission
 from django.core.cache import cache
 from django.contrib.sites.models import Site
 from hashlib import md5

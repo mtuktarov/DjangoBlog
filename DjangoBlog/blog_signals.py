@@ -9,7 +9,7 @@ from DjangoBlog.utils import get_current_site
 from django.core.mail import EmailMultiAlternatives
 from django.db.models.signals import post_save
 from django.contrib.auth.signals import user_logged_in, user_logged_out, user_login_failed
-
+from django.contrib.contenttypes.models import ContentType
 from DjangoBlog.utils import cache, send_email, expire_view_cache, delete_sidebar_cache, delete_view_cache
 from DjangoBlog.spider_notify import SpiderNotify
 from oauth.models import OAuthUser
@@ -22,6 +22,8 @@ import os
 from DjangoBlog.settings import EMAIL_FILES
 from email.mime.image import MIMEImage
 
+
+from django.contrib.auth.models import Group
 logger = logging.getLogger(__name__)
 
 oauth_user_login_signal = django.dispatch.Signal(providing_args=['id'])

@@ -11,6 +11,8 @@ from accounts.admin import *
 from oauth.admin import *
 from servermanager.admin import *
 from comments.admin import *
+from todo.models import Attachment, Comment, Task, TaskList
+from todo.admin import TaskAdmin, CommentAdmin, AttachmentAdmin
 
 
 class DjangoBlogAdminSite(AdminSite):
@@ -57,3 +59,8 @@ admin_site.register(OAuthConfig, OAuthConfigAdmin)
 admin_site.register(Site, SiteAdmin)
 
 admin_site.register(LogEntry, LogEntryAdmin)
+
+admin_site.register(TaskList)
+admin_site.register(Comment, CommentAdmin)
+admin_site.register(Task, TaskAdmin)
+admin_site.register(Attachment, AttachmentAdmin)
