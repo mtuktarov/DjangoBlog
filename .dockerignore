@@ -4,6 +4,7 @@ blog
 blogd.ini
 comments
 config
+env
 .coveragerc
 data
 DjangoBlog

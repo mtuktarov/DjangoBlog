@@ -27,7 +27,7 @@ DEBUG = os.getenv('DJANGO_DEBUG', False)
 TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['*', '127.0.0.1', 'mtuktarov.ru', '192.168.1.64']
+ALLOWED_HOSTS = ['*', '127.0.0.1', 'mtuktarov.ru', '192.168.1.64', 'mtuktarov.com']
 # Application definition
 
 
@@ -44,13 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
-    'debug_toolbar',
     'mdeditor',
     'haystack',
     'blog',
     'accounts',
     'comments',
-    'oauth',
+    # 'oauth',
     'servermanager',
     'compressor',
     'todo',
@@ -65,7 +64,6 @@ MIDDLEWARE = [
     # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -207,7 +205,7 @@ EMAIL_HOST_PASSWORD = os.getenv('DJANGO_EMAIL_PASS', '')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 # Setting debug=false did NOT handle except email notifications
-ADMINS = [('admin', 'admin@mtuktarov.ru')]
+ADMINS = [('admin', EMAIL_HOST_USER)]
 # WX ADMIN password(Two times md5)
 WXADMIN = '995F03AC401D6CABABAEF756FC4D43C7'
 
@@ -241,7 +239,6 @@ LOGGING = {
         },
         'console': {
             'level': 'DEBUG',
-            'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         },

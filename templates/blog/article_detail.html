@@ -61,9 +61,6 @@
                             href="{% url "account:login" %}?next={{ request.get_full_path }}" rel="nofollow">войдите</a> и пишите комментариев сколько хотите
                     </h3>
 
-                    {% load oauth_tags %}
-                    {% load_oauth_applications request %}
-
                 </div>
             {% endif %}
         {% endif %}

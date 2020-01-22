@@ -8,11 +8,9 @@ from django.contrib.sites.models import Site
 from DjangoBlog.logentryadmin import LogEntryAdmin
 from blog.admin import *
 from accounts.admin import *
-from oauth.admin import *
 from servermanager.admin import *
 from comments.admin import *
-from todo.models import Attachment, Comment, Task, TaskList
-from todo.admin import TaskAdmin, CommentAdmin, AttachmentAdmin
+from todo.models import Task, Comment, Attachment, TaskList
 
 
 class DjangoBlogAdminSite(AdminSite):
@@ -38,7 +36,7 @@ class DjangoBlogAdminSite(AdminSite):
 
 admin_site = DjangoBlogAdminSite(name='admin')
 
-
+admin_site.register(BlogUser, BlogUserAdmin)
 admin_site.register(Article, ArticlelAdmin)
 admin_site.register(Category, CategoryAdmin)
 admin_site.register(Tag, TagAdmin)
@@ -49,18 +47,17 @@ admin_site.register(BlogSettings, BlogSettingsAdmin)
 admin_site.register(commands, CommandsAdmin)
 admin_site.register(EmailSendLog, EmailSendLogAdmin)
 
-admin_site.register(BlogUser, BlogUserAdmin)
 
-admin_site.register(SiteComment, CommentAdmin)
+admin_site.register(SiteComment, SiteCommentAdmin)
 
-admin_site.register(OAuthUser, OAuthUserAdmin)
-admin_site.register(OAuthConfig, OAuthConfigAdmin)
+# admin_site.register(OAuthUser, OAuthUserAdmin)
+# admin_site.register(OAuthConfig, OAuthConfigAdmin)
 
 admin_site.register(Site, SiteAdmin)
 
 admin_site.register(LogEntry, LogEntryAdmin)
 
+admin_site.register(Attachment)
+admin_site.register(Task)
 admin_site.register(TaskList)
-admin_site.register(Comment, CommentAdmin)
-admin_site.register(Task, TaskAdmin)
-admin_site.register(Attachment, AttachmentAdmin)
+admin_site.register(Comment)

@@ -3,6 +3,7 @@ import logging
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 # from django.views.generic.edit import FormView
+from django.contrib.auth.models import Group
 from django.views.generic import FormView, RedirectView
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
@@ -52,7 +53,7 @@ class RegisterView(FormView):
                            images={"logo.png": "image/png", "mail_icon.png": "image/png"})
 
             url = reverse('accounts:result') + '?type=register&id=' + str(user.id)
-            messages.success(request, f"New account created: {username}")
+            messages.success(self.request, f"Новый аккаунт %s создан. Подтвердите свой почтовый ящик: %s" % (user.username, user.email))
             return HttpResponseRedirect(url)
         else:
             return self.render_to_response({
@@ -103,7 +104,7 @@ class LoginView(FormView):
             if cache and cache is not None:
                 cache.clear()
             logger.info(self.redirect_field_name)
-            messages.success(self.request, 'Student created successfully.')
+            messages.success(self.request, 'User logged in successfully.')
             auth.login(self.request, form.get_user())
             return super(LoginView, self).form_valid(form)
             # return HttpResponseRedirect('/')
@@ -140,7 +141,10 @@ def account_result(request):
             sign = request.GET.get('sign')
             if sign != c_sign:
                 return HttpResponseForbidden()
+            user.is_staff = True
             user.is_active = True
+            my_group = Group.objects.get(name='new_users')
+            my_group.user_set.add(user)
             user.save()
             content = '''
             Почта успешно подтверждена!

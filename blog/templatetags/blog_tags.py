@@ -15,7 +15,7 @@ import urllib
 from comments.models import SiteComment
 from DjangoBlog.utils import cache_decorator, cache
 from django.contrib.auth import get_user_model
-from oauth.models import OAuthUser
+# from oauth.models import OAuthUser
 from DjangoBlog.utils import get_current_site
 import logging
 

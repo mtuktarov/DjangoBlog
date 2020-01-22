@@ -17,7 +17,7 @@ disable_commentstatus.short_description = 'Отключить комментар
 enable_commentstatus.short_description = 'Включить комментарии'
 
 
-class CommentAdmin(admin.ModelAdmin):
+class SiteCommentAdmin(admin.ModelAdmin):
     list_per_page = 20
     list_display = ('id', 'body', 'link_to_userinfo', 'link_to_article', 'is_enable', 'created_time')
     list_display_links = ('id', 'body')

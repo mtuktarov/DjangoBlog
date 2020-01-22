@@ -23,7 +23,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from DjangoBlog.admin_site import admin_site
 from django.urls import include, path
-import debug_toolbar
 from django.views.generic.base import RedirectView
 
 sitemaps = {
@@ -45,7 +44,7 @@ urlpatterns = [
     url(r'mdeditor/', include('mdeditor.urls')),
     url(r'', include('comments.urls', namespace='comment')),
     url(r'', include('accounts.urls', namespace='account')),
-    url(r'', include('oauth.urls', namespace='oauth')),
+    # url(r'', include('oauth.urls', namespace='oauth')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap'),
     url(r'^feed/$', DjangoBlogFeed()),

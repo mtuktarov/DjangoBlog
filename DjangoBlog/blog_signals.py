@@ -12,7 +12,6 @@ from django.contrib.auth.signals import user_logged_in, user_logged_out, user_lo
 from django.contrib.contenttypes.models import ContentType
 from DjangoBlog.utils import cache, send_email, expire_view_cache, delete_sidebar_cache, delete_view_cache
 from DjangoBlog.spider_notify import SpiderNotify
-from oauth.models import OAuthUser
 from blog.models import Article, Category, Tag, Links, SideBar, BlogSettings
 from comments.models import SiteComment
 from comments.utils import send_comment_email
@@ -26,7 +25,6 @@ from email.mime.image import MIMEImage
 from django.contrib.auth.models import Group
 logger = logging.getLogger(__name__)
 
-oauth_user_login_signal = django.dispatch.Signal(providing_args=['id'])
 send_email_signal = django.dispatch.Signal(providing_args=['emailto', 'title', 'content'])
 
 
@@ -62,21 +60,6 @@ def send_email_signal_handler(sender, **kwargs):
         logger.error(e)
         log.send_result = False
     log.save()
-
-
-@receiver(oauth_user_login_signal)
-def oauth_user_login_signal_handler(sender, **kwargs):
-    id = kwargs['id']
-    oauthuser = OAuthUser.objects.get(id=id)
-    site = get_current_site().domain
-    if oauthuser.picture and not oauthuser.picture.find(site) >= 0:
-        from DjangoBlog.utils import save_user_avatar
-        oauthuser.picture = save_user_avatar(oauthuser.picture)
-        oauthuser.save()
-
-    delete_sidebar_cache(oauthuser.author.username)
-
-    cache.clear()
 
 
 @receiver(post_save)
