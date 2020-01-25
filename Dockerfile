@@ -1,29 +1,44 @@
 FROM python:3.8-alpine
 
-ARG AUTOMATIC_MIGRATIONS=FALSE
-ENV AUTOMATIC_MIGRATIONS=$AUTOMATIC_MIGRATIONS
+ARG DJANGO_SU_EMAIL=admin@blogd.com
+ARG DJANGO_SU_PASSWORD=1qazXSW@
+ARG DJANGO_SU_NAME=admin
+
+ARG PGPASSWORD=blogd
+ARG PGUSER=blogd
+ARG PGNAME=blogd
+ARG PGHOST=127.0.0.1
+
+ARG MAKEMIGRATIONS=true
+ARG MIGRATE=true
+ARG COLLECT_STATIC=true
+ARG COMPRESS_STATIC=true
+
 RUN mkdir -p /opt/blogd
-WORKDIR /opt/blogd
-COPY requirements.txt /opt/blogd/requirements.txt
+COPY requirements.txt /tmp/requirements.txt
 RUN addgroup -g 101 blogd                                        &&  \
     adduser -G blogd -u 101 -h /opt/blogd -s /bin/sh -D blogd    &&  \
     chown -R 101:101 /opt/blogd && \
     apk add --no-cache --virtual .build-deps zlib-dev gcc libc-dev libffi-dev postgresql-dev g++ && \
-    apk add memcached libssl1.1 libcrypto1.1 libpq postgresql-client && \
+    apk add memcached libssl1.1 libcrypto1.1 libpq postgresql-client git && \
     pip install -U pip django==2.2.8 && \
-    pip install -Ur requirements.txt && \
+    pip install -Ur /tmp/requirements.txt && \
     apk del .build-deps && \
     rm -rf /var/cache/apk/*
+COPY blogd.sh /blogd.sh
 USER blogd
-CMD [ "/bin/sh", "-c", "\
-    test $(echo $WAIT_FOR_POSTGRES | tr [A-Z] [a-z]) = true ; \
-    while true ; do psql -c \"SELECT datname FROM pg_database WHERE datistemplate = false;\" && sleep 10 && break || sleep 10 ; done ; ; \
-    test $(echo $ADD_SUPERUSER | tr [A-Z] [a-z]) = true && ./manage.py createsuperuser ; \
-    test $(echo $CONFIGURE_GROUPS | tr [A-Z] [a-z]) = true && ./manage.py configure_groups  ; \
-    test $(echo $RENAME_SITE | tr [A-Z] [a-z]) = true && ./manage.py rename_site  ; \
-    test $(echo $MAKEMIGRATIONS | tr [A-Z] [a-z]) = true && ./manage.py makemigrations ; \
-    test $(echo $MIGRATE | tr [A-Z] [a-z]) = true && ./manage.py migrate ; \
-    test $(echo $COLLECT_STATIC | tr [A-Z] [a-z]) = true && ./manage.py collectstatic --noinput ; \
-    test $(echo $COMPRESS_STATIC | tr [A-Z] [a-z]) = true && ./manage.py compress --force ; \
-    test $(echo $DJANGO_DISABLE_CACHE | tr [A-Z] [a-z]) = true ||  memcached -d ; \
-    uwsgi $UWSGI_PARAMS"]
+ENV DJANGO_SU_EMAIL=$DJANGO_SU_EMAIL
+ENV DJANGO_SU_PASSWORD=$DJANGO_SU_PASSWORD
+ENV DJANGO_SU_NAME=$DJANGO_SU_NAME
+
+ENV PGPASSWORD=$PGPASSWORD
+ENV PGUSER=$PGUSER
+ENV PGNAME=$PGNAME
+ENV PGHOST=$PGHOST
+
+ENV MAKEMIGRATIONS=$MAKEMIGRATIONS
+ENV MIGRATE=$MIGRATE
+ENV COLLECT_STATIC=$COLLECT_STATIC
+ENV COMPRESS_STATIC=$COMPRESS_STATIC
+WORKDIR /opt/blogd
+ENTRYPOINT ["/blogd.sh"]

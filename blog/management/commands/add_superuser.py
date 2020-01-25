@@ -11,6 +11,8 @@ import logging
 
 class Command(BaseCommand):
     help = 'Creates a super user using environemnt variables'
+
+    def handle(self, *args, **options):
         try:
             superuser = BlogUser.objects.get(is_superuser=True)
         except ObjectDoesNotExist as err:

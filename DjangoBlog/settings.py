@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'blog',
     'accounts',
     'comments',
-    # 'oauth',
     'servermanager',
     'compressor',
     'todo',
@@ -104,9 +103,9 @@ DJANGO_SU_PASSWORD = os.environ.get('DJANGO_SU_PASSWORD', 'admin123')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DJANGO_DB_NAME', 'mtuktarov'),
-        'USER': os.getenv('PGUSER', 'mtuktarov'),
-        'PASSWORD': os.getenv('PGPASSWORD', 'mtuktarov'),
+        'NAME': os.getenv('PGNAME', 'blogd'),
+        'USER': os.getenv('PGUSER', 'blogd'),
+        'PASSWORD': os.getenv('PGPASSWORD', 'blogd'),
         'HOST': os.getenv('PGHOST', '/opt/blogd/sockets'),
     }
 }
@@ -284,7 +283,7 @@ COMPRESS_JS_FILTERS = [
     'compressor.filters.jsmin.JSMinFilter'
 ]
 
-MEDIA_ROOT = os.path.join(SITE_ROOT, 'uploads')
+MEDIA_ROOT = '/media'
 MEDIA_URL = '/media/'
 
 MDEDITOR_CONFIGS = {

@@ -17,6 +17,7 @@ MODELS = ['logentry', 'permission', 'group', 'contenttype', 'session', 'site', '
 class Command(BaseCommand):
     help = 'Creates read only default permission groups for users'
 
+    def handle(self, *args, **options):
         for group in GROUPS:
             new_group, created = Group.objects.get_or_create(name=group)
             for model in MODELS:
