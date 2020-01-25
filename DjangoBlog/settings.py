@@ -105,9 +105,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('DJANGO_DB_NAME', 'mtuktarov'),
-        'USER': os.getenv('DJANGO_DB_USER', 'mtuktarov'),
-        'PASSWORD': os.getenv('DJANGO_DB_PASSWORD', 'mtuktarov'),
-        'HOST': os.getenv('DJANGO_DB_HOST', '/opt/blogd/sockets'),
+        'USER': os.getenv('PGUSER', 'mtuktarov'),
+        'PASSWORD': os.getenv('PGPASSWORD', 'mtuktarov'),
+        'HOST': os.getenv('PGHOST', '/opt/blogd/sockets'),
     }
 }
 

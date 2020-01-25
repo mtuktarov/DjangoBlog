@@ -8,8 +8,6 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
 from django.contrib.auth.models import ContentType
 from accounts.models import BlogUser
-from django.contrib.sites.models import Site
-from DjangoBlog.settings import DJANGO_SU_NAME, DJANGO_SU_EMAIL, DJANGO_SU_PASSWORD, SITE_DOMAIN_NAME, SITE_ID
 import logging
 
 GROUPS = ['new_users', 'devops', 'developers', 'qa', 'operators', 'product']
@@ -18,19 +16,6 @@ MODELS = ['logentry', 'permission', 'group', 'contenttype', 'session', 'site', '
 
 class Command(BaseCommand):
     help = 'Creates read only default permission groups for users'
-
-    def handle(self, *args, **options):
-        obj, created = Site.objects.get_or_create(
-            pk=SITE_ID,
-            defaults={
-                "domain": SITE_DOMAIN_NAME,
-                "name": SITE_DOMAIN_NAME
-            }
-        )
-        obj.domain = SITE_DOMAIN_NAME
-        obj.name = SITE_DOMAIN_NAME
-        obj.save()
-        logging.info("Site has been changed to %s" % SITE_DOMAIN_NAME)
 
         for group in GROUPS:
             new_group, created = Group.objects.get_or_create(name=group)
@@ -56,16 +41,8 @@ class Command(BaseCommand):
 
         try:
             superuser = BlogUser.objects.get(is_superuser=True)
-        except ObjectDoesNotExist as err:
-            logging.error("Could not query a superuser: {0}".format(err))
-            superuser = BlogUser.objects.create_superuser(username=DJANGO_SU_NAME, email=DJANGO_SU_EMAIL, password=DJANGO_SU_PASSWORD)
-            superuser.save()
-            logging.info("Superuser created")
-
-        try:
             my_group = Group.objects.get(name='devops')
             my_group.user_set.add(superuser)
             logging.info("Superuser has been added to devops group")
         except ObjectDoesNotExist as err:
             logging.error("Could not query a devops group: {0}".format(err))
-
