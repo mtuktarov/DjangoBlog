@@ -305,3 +305,10 @@ def key(d, key_name):
 
 
 key = register.filter('key', key)
+
+
+@register.filter
+def rain(d):
+    if settings.WEATHER in 'rain':
+        return True
+    return False

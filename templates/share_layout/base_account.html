@@ -24,8 +24,10 @@
         <link href="{% static 'assets/css/signin.css' %}" rel="stylesheet">
     {% endcompress %}
     {% compress js %}
+      <script type="text/javascript" src="{% static 'blog/js/jquery-3.1.1.js' %}"></script>
         <script src="{% static 'assets/js/ie10-viewport-bug-workaround.js' %}"></script>
         <script src="{% static 'assets/js/ie-emulation-modes-warning.js' %}"></script>
+
     {% endcompress %}
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -34,8 +36,16 @@
     <![endif]-->
 </head>
 
+{% load blog_tags %}
+{% if weather|rain %}
+<link rel="stylesheet" href="{% static 'blog/css/rain.css' %}">
+<body class="back-row-toggle splat-toggle">
+<div class="rain front-row" style="z-index: -1;"></div>
+<div class="rain back-row" style="z-index: -1;"></div>
+<script type="text/javascript" src="{% static 'blog/js/rain.js' %}"></script>
+{% else %}
 <body>
-      <div id="main" class="wrapper">
+{% endif %}
 
     <!-- <p>{{ form.non_field_errors }}</p> -->
         {% block content %}

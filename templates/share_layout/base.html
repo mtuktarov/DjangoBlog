@@ -1,6 +1,7 @@
 {% load static %}
 {% load cache %}
 {% load compress %}
+
 <!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" lang="ru-RU" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
@@ -46,8 +47,18 @@
         {% endblock %}
     {% endcompress %}
 </head>
+{% load blog_tags %}
+{% if weather|rain %}
+<link rel="stylesheet" href="{% static 'blog/css/rain.css' %}">
+<body class="home blog custom-font-enabled back-row-toggle splat-toggle">
+<div class="rain front-row" style="z-index: -1;"></div>
+<div class="rain back-row" style="z-index: -1;"></div>
+<script type="text/javascript" src="{% static 'blog/js/rain.js' %}"></script>
+{% else %}
 <body class="home blog custom-font-enabled">
-<div id="page" class="hfeed site">
+{% endif %}
+
+<div id="page" class="hfeed site ">
     <header id="masthead" class="site-header" role="banner">
             <!-- <div class="wrap"> -->
       <hgroup style="display: inline; padding-bottom: 30px;">
