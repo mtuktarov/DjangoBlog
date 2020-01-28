@@ -1,14 +1,3 @@
-  html {
-  height: 100%;
-}
-
-body {
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
-  background: linear-gradient(to bottom, #e6e6e6, #22222A);
-}
-
 .rain {
   position: absolute;
   left: 0;

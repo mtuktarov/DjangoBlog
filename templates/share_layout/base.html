@@ -54,6 +54,10 @@
 <div class="rain front-row" style="z-index: -1;"></div>
 <div class="rain back-row" style="z-index: -1;"></div>
 <script type="text/javascript" src="{% static 'blog/js/rain.js' %}"></script>
+{% elif weather|snow %}
+<link rel="stylesheet" href="{% static 'blog/css/snow.css' %}">
+<body class="home blog custom-font-enabled back-row-toggle splat-toggle">
+<script type="text/javascript" src="{% static 'blog/js/snow.js' %}"></script>
 {% else %}
 <body class="home blog custom-font-enabled">
 {% endif %}

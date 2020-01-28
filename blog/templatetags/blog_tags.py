@@ -312,3 +312,10 @@ def rain(d):
     if settings.WEATHER in 'rain':
         return True
     return False
+
+
+@register.filter
+def snow(d):
+    if settings.WEATHER in 'snow':
+        return True
+    return False

@@ -5,7 +5,6 @@
   var increment = 0;
   var drops = "";
   var backDrops = "";
-
   while (increment < 100) {
     //couple random numbers to use for various randomizations
     //random number between 98 and 1
@@ -41,4 +40,20 @@ $('.single-toggle.toggle').on('click', function() {
   makeItRain();
 });
 
-makeItRain();
+isMobile = navigator.userAgent.match(/mobile|opera m(ob|in)/i);
+var styles_body = {
+  height : "100%",
+  margin : "0",
+  overflow : "hidden",
+  background : "linear-gradient(to bottom, #f8f8f8, #444444)"
+};
+var styles_html = {
+  height: "100%"
+};
+
+if (!isMobile){
+  $("body.back-row-toggle").css(styles_body);
+  $("html").css(styles_html);
+  makeItRain();
+}
+
