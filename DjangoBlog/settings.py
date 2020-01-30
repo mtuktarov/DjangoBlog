@@ -34,6 +34,9 @@ ALLOWED_HOSTS = ['*', '127.0.0.1', 'mtuktarov.ru', '192.168.1.64']
 # Application definition
 # MY_SUPER_ERROR = 0
 # MESSAGE_LEVEL = MY_SUPER_ERROR
+LOGO_COLOR_BACKGROUND='#2D2F44'
+LOGO_COLOR_TEXT='#E0BF4B'
+
 
 SITE_ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE_ROOT = os.path.abspath(os.path.join(SITE_ROOT, '../'))
@@ -85,10 +88,10 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'blog.context_processors.seo_processor'
+                'blog.context_processors.seo_processor',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -278,9 +281,9 @@ COMPRESS_ENABLED = False
 
 COMPRESS_CSS_FILTERS = [
     # creates absolute urls from relative ones
-    'compressor.filters.css_default.CssAbsoluteFilter',
+    # 'compressor.filters.css_default.CssAbsoluteFilter',
     # css minimizer
-    'compressor.filters.cssmin.CSSMinFilter'
+    # 'compressor.filters.cssmin.CSSMinFilter'
 ]
 COMPRESS_JS_FILTERS = [
     'compressor.filters.jsmin.JSMinFilter'

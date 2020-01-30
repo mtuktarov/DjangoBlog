@@ -116,7 +116,7 @@ def load_articletags(article):
 
 
 @register.inclusion_tag('blog/tags/sidebar.html')
-def load_sidebar(user, linktype):
+def load_sidebar(user, linktype, request):
     """
     Load the sidebar
     :return:
@@ -165,7 +165,8 @@ def load_sidebar(user, linktype):
         'show_category_bar': blogsetting.show_category_bar,
         'show_search_bar': blogsetting.show_search_bar,
         'show_menu_bar': blogsetting.show_menu_bar,
-        'extra_sidebars': extra_sidebars
+        'extra_sidebars': extra_sidebars,
+        'request': request
     }
 
 
