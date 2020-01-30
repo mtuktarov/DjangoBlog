@@ -61,10 +61,10 @@
     </aside>
 {% endif %}
 {% if recent_articles %}
-    <aside id="recent-posts-2" class="widget widget_recent_entries"><h3 class="widget-title">Публикации</h3>
-        <ul class="list-group-flush">
+    <aside id="recent-posts" class="widget widget_recent_entries recent-posts"><h3 class="widget-title">Публикации</h3>
+        <ul class="list-group-flush find_active">
             {% for a in  recent_articles %}
-              <li class="list-group-item text-wrap py-2 px-2 {% if request.get_full_path == a.get_absolute_url %}active {% endif %}">
+              <li class="list-group-item text-wrap py-2 {% if request.get_full_path == a.get_absolute_url %}active {% endif %}">
                 <a href="{{ a.get_absolute_url }}" title="{{ a.title }}" class="text-reset">{{ a.title }}</a>
               </li>
             {% endfor %}

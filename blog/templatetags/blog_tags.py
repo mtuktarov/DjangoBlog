@@ -122,6 +122,7 @@ def load_sidebar(user, linktype, request):
     :return:
     """
     logger.info('load sidebar')
+    logger.info('request: {}'.format(request))
     from DjangoBlog.utils import get_blog_setting
     blogsetting = get_blog_setting()
     recent_articles = Article.objects.filter(status='p')[:blogsetting.sidebar_article_count]
