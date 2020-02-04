@@ -16,7 +16,7 @@ ExecStart=/usr/bin/docker run --rm --name %n \
     -e POSTGRES_PASSWORD=blogd \
     -e POSTGRES_USER=blogd \
     -v /opt/blogd_data:/var/lib/postgresql/data \
-    -p 5432:5432 \
+    -p 172.17.0.1:5432:5432 \
     postgres:alpine
 ExecStartPost=/opt/blogd/config/docker_wrap.sh set_time_byname %n
 ExecStop=/opt/blogd/config/docker_wrap.sh stop_byname %n
