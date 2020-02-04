@@ -16,7 +16,8 @@
   <head>
       {% include 'head.html' %}
 
-
+      {% block header %}
+      {% endblock %}
   </head>
   {% if weather|rain %}
     <link rel="stylesheet" href="{% static 'blog/css/rain.css' %}">
