@@ -16,7 +16,8 @@
   <head>
       {% include 'head.html' %}
 
-
+      {% block header %}
+      {% endblock %}
   </head>
   {% if weather|rain %}
     <link rel="stylesheet" href="{% static 'blog/css/rain.css' %}">
@@ -38,7 +39,7 @@
 
     <div id="page" class="site row mx-auto mt-3 col-11 col-md-9 py-5">
       {% include 'share_layout/messages.html' %}
-      <div id="primary" class="site-content site-content col-md-8 py-0 pl-5">
+      <div id="primary" class="site-content site-content col-md-8 py-0 pl-2">
         {% block content %}
         {% endblock %}
       </div>

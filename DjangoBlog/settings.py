@@ -34,8 +34,8 @@ ALLOWED_HOSTS = ['*', '127.0.0.1', 'mtuktarov.ru', '192.168.1.64']
 # Application definition
 # MY_SUPER_ERROR = 0
 # MESSAGE_LEVEL = MY_SUPER_ERROR
-LOGO_COLOR_BACKGROUND='#2D2F44'
-LOGO_COLOR_TEXT='#E0BF4B'
+LOGO_COLOR_BACKGROUND = '#2d2f44'
+LOGO_COLOR_TEXT = '#e0bf4b'
 
 
 SITE_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -64,10 +64,12 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     # 'django.middleware.cache.UpdateCacheMiddleware',
-    'django.middleware.common.CommonMiddleware',
+
+
     # 'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
