@@ -17,14 +17,15 @@ ExecStart=/usr/bin/docker run --rm --name %n \
     -v /opt/blogd_media:/opt/blogd_media \
     -v /opt/blogd_sockets:/opt/blogd_sockets \
     -v /opt/blogd_static:/opt/blogd_static \
-    -v /opt/local_settings.py:/opt/local_settings.py \
+    -v /opt/blogd_local:/opt/blogd/blogd_local \
     -e ADD_SUPERUSER=true \
     -e PGNAME=mtuktarov \
     -e PGUSER=mtuktarov \
     -e PGPASSWORD=mtuktarov \
+    -e DJANGO_WEATHER=ok \
     -e PGHOST=172.17.0.1 \
     -e CONFIGURE_GROUPS=true \
-    -e BRANCH=master \
+    -e BRANCH=makeItRain \
     -e RENAME_SITE=true \
     -e WAIT_FOR_POSTGRES=true \
     -p 8000:8000 \

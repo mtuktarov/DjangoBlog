@@ -339,6 +339,6 @@ MESSAGE_TAGS = {message_constants.DEBUG: 'debug',
 
 
 try:
-    from local_settings import *
+    from blogd_local.local_settings import *
 except ImportError:
     pass
