@@ -34,8 +34,8 @@ ALLOWED_HOSTS = ['*', '127.0.0.1', 'mtuktarov.ru', '192.168.1.64']
 # Application definition
 # MY_SUPER_ERROR = 0
 # MESSAGE_LEVEL = MY_SUPER_ERROR
-LOGO_COLOR_BACKGROUND='#2D2F44'
-LOGO_COLOR_TEXT='#E0BF4B'
+LOGO_COLOR_BACKGROUND = '#2d2f44'
+LOGO_COLOR_TEXT = '#e0bf4b'
 
 
 SITE_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'haystack',
     'blog',
     'accounts',
+    'corsheaders',
     'comments',
     'oauth',
     'servermanager',
@@ -64,10 +65,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     # 'django.middleware.cache.UpdateCacheMiddleware',
-    'django.middleware.common.CommonMiddleware',
+
+
     # 'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -132,6 +136,41 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/.*$'
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8080",
+    "http://127.0.0.1:000"
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+# from corsheaders.defaults import default_headers
+
+# CORS_ALLOW_HEADERS = list(default_headers) + [
+#     'my-custom-header',
+# ]
+
+# CORS_ORIGIN_WHITELIST = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/

@@ -1,6 +1,6 @@
 {% load blog_tags %}
 {% if show_search_bar %}
-  <aside id="search-2" class="widget widget_search">
+  <aside id="search-2" class="widget widget_search py-3">
       <form role="search" method="get" id="searchform" class="searchform" action="/search">
           <div>
               <label class="screen-reader-text" for="s">Поиск:</label>
@@ -12,8 +12,8 @@
 {% endif %}
 {% if extra_sidebars %}
 {% for sidebar in extra_sidebars %}
-      <aside class="widget_text widget widget_custom_html"><h3 class="widget-title">
-          {{ sidebar.name }}</h3>
+      <aside class="widget_text widget widget_custom_html py-3">
+        <h3 class="widget-title pb-2">{{ sidebar.name }}</h3>
           <div class="textwidget custom-html-widget">
               {{ sidebar.content|custom_markdown }}
           </div>
@@ -21,7 +21,8 @@
   {% endfor %}
 {% endif %}
 {% if show_views_bar and most_read_articles %}
-    <aside id="views-4" class="widget widget_views"><h3 class="widget-title">Просмотры</h3>
+    <aside id="views-4" class="widget widget_views py-3">
+      <h3 class="widget-title pb-2">Просмотры</h3>
         <ul>
             {% for a in most_read_articles %}
                 <li>
@@ -34,8 +35,9 @@
     </aside>
 {% endif %}
 {% if sidebar_tags %}
-    <aside id="tag_cloud-2" class="widget widget_tag_cloud"><h3 class="widget-title">Теги</h3>
-        <div class="tagcloud">
+    <aside id="tag_cloud-2" class="widget widget_tag_cloud py-3">
+      <h3 class="widget-title pb-2">Теги</h3>
+        <div class="tagcloud text-center">
             {% for tag,count,size in sidebar_tags %}
                 <a href="{{ tag.get_absolute_url }}"
                    class="tag-link-{{ tag.id }} tag-link-position-{{ tag.id }}"
@@ -45,7 +47,8 @@
     </aside>
 {% endif %}
 {% if sidebar_comments and open_site_comment %}
-    <aside id="ds-recent-comments-4" class="widget ds-widget-recent-comments"><h3 class="widget-title">Обсуждения</h3>
+    <aside id="ds-recent-comments-4" class="widget ds-widget-recent-comments py-3">
+      <h3 class="widget-title pb-2">Обсуждения</h3>
         {% comment %}<ul class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1"
         data-show-title="1" data-show-admin="1" data-avatar-size="30" data-excerpt-length="70"></ul>{% endcomment %}
         <ul id="recentcomments">
@@ -61,7 +64,8 @@
     </aside>
 {% endif %}
 {% if recent_articles %}
-    <aside id="recent-posts" class="widget widget_recent_entries recent-posts"><h3 class="widget-title">Публикации</h3>
+    <aside id="recent-posts" class="widget widget_recent_entries recent-posts py-3">
+      <h3 class="widget-title pb-2">Публикации</h3>
         <ul class="list-group-flush find_active">
             {% for a in  recent_articles %}
               <li class="list-group-item text-wrap py-2 {% if request.get_full_path == a.get_absolute_url %}active {% endif %}">
@@ -73,7 +77,8 @@
 {% endif %}
 
 {% if sidabar_links %}
-    <aside id="linkcat-0" class="widget widget_links"><h3 class="widget-title">Ссылка</h3>
+    <aside id="linkcat-0" class="widget widget_links py-3">
+      <h3 class="widget-title pb-2">Ссылка</h3>
         <ul class='xoxo blogroll'>
             {% for l in sidabar_links %}
                 <li>
@@ -84,7 +89,8 @@
     </aside>
 {% endif %}
 {% if show_google_adsense %}
-    <aside id="text-2" class="widget widget_text"><h3 class="widget-title">Google AdSense</h3>
+    <aside id="text-2" class="widget widget_text py-3">
+      <h3 class="widget-title pb-2">Google AdSense</h3>
         <div class="textwidget">
             {{ google_adsense_codes|safe }}
         </div>
