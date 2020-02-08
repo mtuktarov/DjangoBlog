@@ -1,6 +1,5 @@
 (function( $ ){
    $.fn.reset_active_element = function() {
-    console.log($(this))
     $(this).addClass("active").closest('li','ul').addClass("active").siblings().each(function() {
         $(this).removeClass("active").closest('li','ul').removeClass("active")
     });
