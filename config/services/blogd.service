@@ -1,7 +1,6 @@
 [Unit]
 Description=blogd service
 After=postgresql.service 
-Wants=postgresql.service
 Requires=docker.socket
 
 [Service]
@@ -11,7 +10,6 @@ TimeoutStartSec=300
 TimeoutStopSec=15
 StandardOutput=journal
 StandardError=journal
-ExecStartPre=/opt/blogd/src/config/docker_wrap.sh rm_byname %N
 ExecStartPre=-/usr/bin/docker pull mtuktarov/blogd:latest
 ExecStart=/usr/bin/docker run --rm --name %N \
     --env-file /opt/blogd/config/env \

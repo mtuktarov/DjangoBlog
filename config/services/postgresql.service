@@ -12,10 +12,7 @@ StandardOutput=journal
 StandardError=journal
 ExecStartPre=/opt/blogd/src/config/docker_wrap.sh rm_byname %N
 ExecStartPre=-/usr/bin/docker pull postgres:alpine
-ExecStartPre=-/usr/bin/docker run --name blogd_data \
-    -v /opt/blogd:/opt/blogd \
-    -v /opt/blogd/config/nginx:/etc/nginx/conf.d \
-    busybox:latest
+ExecStartPre=-/usr/bin/docker run --name blogd_data -v /opt/blogd:/opt/blogd -v /opt/blogd/config/nginx:/etc/nginx/conf.d busybox:latest
 ExecStart=/usr/bin/docker run --rm --name %N \
     --env-file /opt/blogd/config/env \
     --volumes-from blogd_data \
