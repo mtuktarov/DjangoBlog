@@ -324,17 +324,17 @@ MESSAGE_TAGS = {message_constants.DEBUG: 'debug',
 
 # Emial:
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('DJANGO_EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_PORT = os.getenv('DJANGO_EMAIL_PORT', 465)
+EMAIL_HOST_USER = os.getenv('DJANGO_EMAIL_USER', 'noreply@gmail.com')
+EMAIL_HOST_PASSWORD = os.getenv('DJANGO_EMAIL_PASS', '')
+EMAIL_FILES = os.path.join(BASE_DIR, 'templates/email')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
 
 try:
     parent_dir = os.path.dirname(SITE_ROOT)
     sys.path.insert(0, os.path.join(parent_dir, 'config')) 
     from local import * 
 except ImportError:
-    EMAIL_HOST = os.getenv('DJANGO_EMAIL_HOST', 'smtp.gmail.com')
-    EMAIL_PORT = os.getenv('DJANGO_EMAIL_PORT', 465)
-    EMAIL_HOST_USER = os.getenv('DJANGO_EMAIL_USER', 'noreply@gmail.com')
-    EMAIL_HOST_PASSWORD = os.getenv('DJANGO_EMAIL_PASS', '')
-
-EMAIL_FILES = os.path.join(BASE_DIR, 'templates/email')
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-SERVER_EMAIL = EMAIL_HOST_USER
+    pass
