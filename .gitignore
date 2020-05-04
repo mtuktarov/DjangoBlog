@@ -83,3 +83,4 @@ werobot_session.db
 data
 sockets
 ssl
+static/
