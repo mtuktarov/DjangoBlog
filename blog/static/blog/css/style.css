@@ -2172,6 +2172,10 @@ li #reply-title {
     box-shadow: 0 0 0 0.2rem #e0bf4b;
 }
 
+.container-input_creds-form-btn button.btn-block:focus{
+    box-shadow: 0 0 0 0.2rem #e0bf4b;
+}
+
 .social-buttons{
     display: inline-block;
     width: 49%;
