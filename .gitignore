@@ -85,4 +85,4 @@ data
 sockets
 ssl
 local_settings.py
-./static/
+static/
