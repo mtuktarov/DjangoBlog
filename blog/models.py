@@ -73,8 +73,8 @@ class Article(BaseModel):
     comment_status = models.CharField('Статус комментариев', max_length=1, choices=COMMENT_STATUS, default='o')
     type = models.CharField('Тип', max_length=1, choices=TYPE, default='a')
     views = models.PositiveIntegerField('Просмотры', default=0)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Автор', blank=False, null=False,
-                               on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Автор', blank=False, null=False, on_delete=models.CASCADE)
+    description = models.CharField('Описание', max_length=300, blank=True, null=True, default="")
     article_order = models.IntegerField('Очередность', blank=False, null=False, default=0)
     category = models.ForeignKey('Category', verbose_name='Категория', on_delete=models.CASCADE, blank=True, null=True)
     tags = models.ManyToManyField('Tag', verbose_name='Тег', blank=True)
