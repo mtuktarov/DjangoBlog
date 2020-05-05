@@ -15,7 +15,7 @@ ExecStartPre=-/usr/bin/docker pull postgres:alpine
 ExecStart=/usr/bin/docker run --rm --name %N -h %N\
     --env-file /opt/blogd/config/env \
     -v /opt/blogd/postgres_data:/postgres_data \
-    --network=blogd -p 5432:5432 \
+    --network=blogd \
     postgres:alpine
 ExecStartPost=/opt/blogd/src/config/docker_wrap.sh set_time_byname %N
 ExecStop=/opt/blogd/src/config/docker_wrap.sh stop_byname %N

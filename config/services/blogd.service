@@ -1,6 +1,6 @@
 [Unit]
 Description=blogd service
-After=postgresql.service 
+After=postgresql.service
 Requires=docker.socket
 
 [Service]
@@ -15,9 +15,8 @@ ExecStart=/usr/bin/docker run --rm --name %N -h %N\
     --env-file /opt/blogd/config/env \
     -v /opt/blogd/media:/opt/blogd/media \
     -v /opt/blogd/static:/opt/blogd/static \
-    -v /opt/blogd/socket:/opt/blogd/socket \
     -v /opt/blogd/config:/opt/blogd/config \
-    --network=blogd -p 8000:8000 \
+    --network=blogd \
     mtuktarov/blogd:latest
 
 ExecStartPost=/opt/blogd/src/config/docker_wrap.sh set_time_byname %N

@@ -13,10 +13,9 @@ StandardOutput=journal
 StandardError=journal
 ExecStartPre=/opt/blogd/src/config/docker_wrap.sh rm_byname %N
 ExecStartPre=-/usr/bin/docker pull nginx:stable-alpine
-ExecStart=/usr/bin/docker run --rm --name %N \
-    -v /opt/blogd/media:/var/blogd/media \
+ExecStart=/usr/bin/docker run --rm --name %N -h %N\
+    -v /opt/blogd/media:/opt/blogd/media \
     -v /opt/blogd/static:/opt/blogd/static \
-    -v /opt/blogd/socket:/opt/blogd/socket \
     -v /opt/blogd/ssl:/opt/blogd/ssl \
     -v /opt/blogd/config/nginx:/etc/nginx/conf.d \
     --network=blogd -p 80:80 -p 443:443 \
