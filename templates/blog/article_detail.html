@@ -3,6 +3,7 @@
 {% load cache %}
 {% block header %}
     <title>{{ article.title }} | {{ SITE_DESCRIPTION }}</title>
+    <meta property="description" content="{{ article.description }}"/>
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="{{ article.title }}"/>
     <meta property="og:description" content="{{ article.description }}"/>
@@ -17,7 +18,7 @@
     {% endfor %}
     <meta property="og:site_name" content="{{ SITE_NAME }}"/>
 
-    <meta name="description" content="{{ article.body|custom_markdown|striptags|truncatewords:1 }}"/>
+
     {% if article.tags %}
         <meta name="keywords" content={{ article.tags.all|join:',' }}"/>
     {% else %}
