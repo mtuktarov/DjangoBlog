@@ -34,7 +34,7 @@ RUN apk add --no-cache --virtual .build-deps zlib-dev gcc libc-dev libffi-dev po
     && pip install --no-cache-dir -Ur /tmp/requirements.txt \
     && git clone -b $BRANCH $BLOGD_REPO_URL /opt/blogd \
     && mkdir -p /opt/blogd/socket /opt/blogd/media /opt/blogd/static \
-    && apk del .build-deps git \
+    && apk del .build-deps \
     && rm -rf /var/cache/apk/*  /tmp/requirements.txt \
     && mv /opt/blogd/media  /opt/blogd/media_tmp \
     && addgroup -g 1000 blogd                                      \

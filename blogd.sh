@@ -13,6 +13,7 @@ format_arg(){
             psql -c "SELECT datname FROM pg_database WHERE datistemplate = false;" && break || sleep 10
         done
     }
+    git pull
     cp /opt/blogd/config/local_settings.py /opt/blogd/DjangoBlog/local_settings.py
     cp -R /opt/blogd/media_tmp/* /opt/blogd/media
     [ $(format_arg $MAKEMIGRATIONS) = true ] && /opt/blogd/manage.py makemigrations
