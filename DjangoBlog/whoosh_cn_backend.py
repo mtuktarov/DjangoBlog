@@ -11,7 +11,6 @@ from whoosh.fields import BOOLEAN, DATETIME, IDLIST, KEYWORD, NGRAM, NGRAMWORDS,
 from whoosh.fields import ID as WHOOSH_ID
 from whoosh.analysis import StemmingAnalyzer
 from whoosh import index
-from jieba.analyse import ChineseAnalyzer
 import json
 import os
 import re
@@ -184,9 +183,7 @@ class WhooshSearchBackend(BaseSearchBackend):
                                                                         stored=field_class.stored,
                                                                         field_boost=field_class.boost)
             else:
-                # schema_fields[field_class.index_fieldname] = TEXT(stored=True, analyzer=StemmingAnalyzer(), field_boost=field_class.boost, sortable=True)
-                schema_fields[field_class.index_fieldname] = TEXT(
-                    stored=True, analyzer=ChineseAnalyzer(), field_boost=field_class.boost, sortable=True)
+                schema_fields[field_class.index_fieldname] = TEXT(stored=True, analyzer=StemmingAnalyzer(), field_boost=field_class.boost, sortable=True)
             if field_class.document is True:
                 content_field_name = field_class.index_fieldname
                 schema_fields[field_class.index_fieldname].spelling = True
