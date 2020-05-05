@@ -15,10 +15,9 @@
 <!--<![endif]-->
   <head>
       <meta name="viewport" content="width=device-width"/>
-      {% include 'head.html' %}
-
       {% block header %}
       {% endblock %}
+      {% include 'head.html' %}
   </head>
 {% if weather|rain %}
     <link rel="stylesheet" href="{% static 'blog/css/rain.css' %}">
