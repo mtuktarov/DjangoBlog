@@ -254,7 +254,11 @@ def load_article_detail(article, isindex, user):
         'article': article,
         'isindex': isindex,
         'user': user,
+<<<<<<< HEAD
         'enable_site_comment': blogsetting.enable_site_comment,
+=======
+        'open_site_comment': blogsetting.enable_site_comment,
+>>>>>>> 0e1a8efcc97cb7d98e6a439304286556286c9706
         'show_views_bar': blogsetting.show_views_bar,
     }
 
