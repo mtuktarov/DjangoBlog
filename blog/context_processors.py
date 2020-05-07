@@ -27,7 +27,7 @@ def seo_processor(requests):
             'ARTICLE_SUB_LENGTH': setting.article_sub_length,
             'nav_category_list': Category.objects.all(),
             'nav_pages': Article.objects.filter(type='p', status='p'),
-            'OPEN_SITE_COMMENT': setting.open_site_comment,
+            'enable_site_comment': setting.enable_site_comment,
             'ANALYTICS_CODE': setting.analyticscode,
             "CURRENT_YEAR": datetime.now().year,
             "SHOW_CATEGORY_BAR": setting.show_category_bar,

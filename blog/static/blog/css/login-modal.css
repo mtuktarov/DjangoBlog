@@ -142,7 +142,7 @@ iframe {
     display: -ms-flexbox;
     display: flex;
     flex-wrap: wrap;
-    padding: 5% 10%;
+    padding: 5% 5%;
     height: 90vh;
 }
 

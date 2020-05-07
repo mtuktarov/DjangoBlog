@@ -1,7 +1,14 @@
 {% load static %}
 {% load compress %}
 {% load blog_tags %}
-      <meta charset="UTF-8"/>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="ROBOTS" content="ALL" style="background-color: white;">
+      <meta property="og:site_name" content="{{ SITE_NAME }}"/>
+      <meta property="og:url" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ request.path }}"/>
+      <meta property="og:locale" content="ru_RU"/>
+      <meta property="fb:app_id" content="1120101035024473"/>
       <link rel="apple-touch-icon" sizes="57x57" href="{% static 'logo/apple-icon-57x57.png' %}">
       <link rel="apple-touch-icon" sizes="60x60" href="{% static 'logo/apple-icon-60x60.png' %}">
       <link rel="apple-touch-icon" sizes="72x72" href="{% static 'logo/apple-icon-72x72.png' %}">
@@ -16,6 +23,8 @@
       <link rel="icon" type="image/png" sizes="96x96" href="{% static 'logo/favicon-96x96.png' %}">
       <link rel="icon" type="image/png" sizes="16x16" href="{% static 'logo/favicon-16x16.png' %}">
       <link rel="manifest" href="{% static 'logo/manifest.json' %}">
+
+
       <meta name="msapplication-TileColor" content="#ffffff">
       <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
       <meta name="theme-color" content="#ffffff">

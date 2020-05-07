@@ -3,15 +3,13 @@
 {% load cache %}
 {% block header %}
 
-    <title>Архив ссылок | {{ SITE_DESCRIPTION }}</title>
+    <title>Архив ссылок | {{ SITE_NAME }}</title>
+    <meta property="og:site_name" content="{{ SITE_NAME }}"/>
     <meta name="description" content="{{ SITE_SEO_DESCRIPTION }}"/>
     <meta name="keywords" content="{{ SITE_KEYWORDS }}"/>
-    <meta property="og:type" content="blog"/>
-    <meta property="og:title" content="{{ SITE_NAME }}"/>
+    <meta property="og:title" content="Архив ссылок | {{ SITE_NAME }}"/>
     <meta property="og:description" content="{{ SITE_DESCRIPTION }}"/>
-    <meta property="og:url" content="{{ SITE_BASE_URL }}"/>
-    <meta property="og:site_name" content="{{ SITE_NAME }}"/>
-
+    <meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}/media/editor/default_image.png"/>
 {% endblock %}
 {% block content %}
 

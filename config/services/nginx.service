@@ -11,7 +11,6 @@ TimeoutStartSec=300
 TimeoutStopSec=15
 StandardOutput=journal
 StandardError=journal
-ExecStartPre=/opt/blogd/src/config/docker_wrap.sh rm_byname %N
 ExecStartPre=-/usr/bin/docker pull nginx:stable-alpine
 ExecStart=/usr/bin/docker run --rm --name %N -h %N\
     -v /opt/blogd/media:/opt/blogd/media \
@@ -21,8 +20,8 @@ ExecStart=/usr/bin/docker run --rm --name %N -h %N\
     --network=blogd -p 80:80 -p 443:443 \
     nginx:stable-alpine
 
-ExecStartPost=/opt/blogd/src/config/docker_wrap.sh set_time_byname %N
-ExecStop=/opt/blogd/src/config/docker_wrap.sh stop_byname %N
+ExecStartPost=-/usr/bin/docker exec -u 0 %N ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+ExecStop=/usr/bin/docker rm -f %N
 
 [Install]
 WantedBy=multi-user.target

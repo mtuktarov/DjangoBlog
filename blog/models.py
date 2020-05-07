@@ -9,6 +9,8 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from DjangoBlog.utils import get_current_site
 from DjangoBlog.utils import cache_decorator, cache
+from DjangoBlog.settings import MEDIA_URL
+from DjangoBlog.settings import MEDIA_ROOT
 from django.utils.timezone import now
 from mdeditor.fields import MDTextField
 
@@ -41,7 +43,7 @@ class BaseModel(models.Model):
 
     def get_full_url(self):
         site = get_current_site().domain
-        url = "https://{site}{path}".format(site=site, path=self.get_absolute_url())
+        url = "{site}{path}".format(site=site, path=self.get_absolute_url())
         return url
 
     class Meta:
@@ -74,10 +76,11 @@ class Article(BaseModel):
     type = models.CharField('Тип', max_length=1, choices=TYPE, default='a')
     views = models.PositiveIntegerField('Просмотры', default=0)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Автор', blank=False, null=False, on_delete=models.CASCADE)
-    description = models.CharField('Описание', max_length=300, blank=True, null=True, default="")
+    description = models.TextField('Описание', max_length=300, blank=True, null=True, default="")
     article_order = models.IntegerField('Очередность', blank=False, null=False, default=0)
     category = models.ForeignKey('Category', verbose_name='Категория', on_delete=models.CASCADE, blank=True, null=True)
     tags = models.ManyToManyField('Tag', verbose_name='Тег', blank=True)
+    image = models.ImageField(verbose_name='Картинга для тега', upload_to = 'editor', default = 'editor/default_image.png')
 
     def body_to_string(self):
         return self.body
@@ -258,14 +261,15 @@ class BlogSettings(models.Model):
     '''Site settings'''
     sitename = models.CharField("Имя сайта", max_length=200, null=False, blank=False, default='')
     site_description = models.TextField("Описание сайта", max_length=1000, null=False, blank=False, default='')
-    site_seo_description = models.TextField("Владелец сайта", max_length=1000, null=False, blank=False, default='')
+    site_seo_description = models.TextField("SEO описание", max_length=1000, null=False, blank=False, default='')
     site_keywords = models.TextField("Ключевые слова сайта", max_length=1000, null=False, blank=False, default='')
+    footer_title = models.TextField('Подпись футера', max_length=1000, null=False, blank=False, default='')
     article_sub_length = models.IntegerField("Отображаемая длина поста", default=300)
     sidebar_article_count = models.IntegerField("Количество постов на боковой панели", default=10)
     sidebar_comment_count = models.IntegerField("Количество комментариев на боковой панели", default=5)
     show_google_adsense = models.BooleanField('Показывать рекламу Гугла', default=False)
     google_adsense_codes = models.TextField('Рекламный контент', max_length=2000, null=True, blank=True, default='')
-    open_site_comment = models.BooleanField('Включить комментарии', default=True)
+    enable_site_comment = models.BooleanField('Включить комментарии', default=True)
     analyticscode = models.TextField("Код статистики сайта", max_length=1000, null=True, blank=True, default='')
     resource_path = models.CharField("Каталог со статикой", max_length=300, null=False, default='media')
     show_views_bar = models.BooleanField('Показывать панель ПРОСМОТРЫ', default=False)

@@ -214,7 +214,7 @@ def get_blog_setting():
             setting.sidebar_article_count = 10
             setting.sidebar_comment_count = 5
             setting.show_google_adsense = False
-            setting.open_site_comment = True
+            setting.enable_site_comment = True
             setting.analyticscode = ''
             setting.show_views_bar = False
             setting.show_category_bar = False
