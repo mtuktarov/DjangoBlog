@@ -31,7 +31,7 @@ RUN apk add --no-cache --virtual .build-deps gcc libc-dev postgresql-dev \
             openssl-dev libxml2-dev libxslt-dev musl-dev freetype-dev \
             lcms2-dev tiff-dev tk-dev tcl-dev linux-headers \
     && apk add memcached libssl1.1 libcrypto1.1 libpq libgcc postgresql-client libxml2 git \
-        jpeg-dev zlib-dev libjpeg libffi-dev \
+        jpeg-dev zlib-dev libjpeg libffi-dev libpng12-dev \
     && python -m pip install pip \
     && pip install --no-cache-dir -Ur /tmp/requirements.txt \
     && git clone -b $BRANCH $BLOGD_REPO_URL /opt/blogd \
