@@ -32,12 +32,11 @@ RUN apk add --no-cache --virtual .build-deps gcc libc-dev postgresql-dev \
             lcms2-dev tiff-dev tk-dev tcl-dev linux-headers \
     && apk add memcached libssl1.1 libcrypto1.1 libpq libgcc postgresql-client libxml2 git \
         jpeg-dev zlib-dev libjpeg libffi-dev libpng-dev \
-    && python -m pip install pip \
+    && pip install -U pip \
     && pip install --no-cache-dir -Ur /tmp/requirements.txt \
     && git clone -b $BRANCH $BLOGD_REPO_URL /opt/blogd \
     && mkdir -p /opt/blogd/socket /opt/blogd/media /opt/blogd/static \
-    && apk del .build-deps \
-    && rm -rf /var/cache/apk/*  /tmp/requirements.txt \
+    && rm -rf /tmp/requirements.txt \
     && mv /opt/blogd/media  /opt/blogd/media_tmp \
     && addgroup -g 1000 blogd                                      \
     && adduser -G blogd -u 1000 -h /opt/blogd -s /bin/sh -D blogd  \
