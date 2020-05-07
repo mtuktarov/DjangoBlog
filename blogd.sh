@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 TEST_SERVER_SOCKET=${TEST_SERVER_SOCKET:-0.0.0.0:8000}
-UWSGI_PARAMS=${UWSGI_PARAMS:---ini ./blogd.ini}
+UWSGI_PARAMS=${UWSGI_PARAMS:---ini ./blogd.ini --enable-threads}
 
 format_arg(){
     echo ${1:-false} | tr [A-Z] [a-z]

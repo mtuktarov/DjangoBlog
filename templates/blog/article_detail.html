@@ -5,6 +5,7 @@
     <title>{{ article.title }} | {{ SITE_NAME }}</title>
     <meta property="description" content="{{ article.description }}"/>
     <meta property="og:title" content="{{ article.title }}"/>
+    <meta property="og:type" content="article"/>
     <meta property="og:description" content="{{ article.description }}"/>
     <meta property="author" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ article.author.get_absolute_url }}"/>
     <meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ article.image.url }}"/>
