@@ -27,10 +27,11 @@ ENV BRANCH=$BRANCH \
     COMPRESS_STATIC=$COMPRESS_STATIC
 
 COPY requirements.txt /tmp/requirements.txt
-RUN apk add --no-cache --virtual .build-deps zlib-dev gcc libc-dev libffi-dev postgresql-dev \
-            openssl-dev jpeg-dev libxml2-dev libxslt-dev musl-dev freetype-dev \
-            lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev  build-base linux-headers \
+RUN apk add --no-cache --virtual .build-deps gcc libc-dev libffi-dev postgresql-dev \
+            openssl-dev libxml2-dev libxslt-dev musl-dev freetype-dev \
+            lcms2-dev tiff-dev tk-dev tcl-dev linux-headers \
     && apk add memcached libssl1.1 libcrypto1.1 libpq libgcc postgresql-client libxml2 git \
+        jpeg-dev zlib-dev libjpeg \
     && python -m pip install Pillow \
     && pip install --no-cache-dir -Ur /tmp/requirements.txt \
     && git clone -b $BRANCH $BLOGD_REPO_URL /opt/blogd \
