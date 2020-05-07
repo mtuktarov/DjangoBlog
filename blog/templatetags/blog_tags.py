@@ -127,11 +127,11 @@ def load_sidebar(user, linktype, request):
     blogsetting = get_blog_setting()
     recent_articles = Article.objects.filter(status='p')[:blogsetting.sidebar_article_count]
     sidebar_categorys = Category.objects.all()
-    extra_sidebars = SideBar.objects.filter(is_enable=True).order_by('sequence')
+    extra_sidebars = SideBar.objects.filter(is_enabled=True).order_by('sequence')
     most_read_articles = Article.objects.filter(status='p').order_by('-views')[:blogsetting.sidebar_article_count]
     dates = Article.objects.datetimes('created_time', 'month', order='DESC')
-    links = Links.objects.filter(is_enable=True).filter(Q(show_type=str(linktype)) | Q(show_type='a'))
-    commment_list = Comment.objects.filter(is_enable=True).order_by('-id')[:blogsetting.sidebar_comment_count]
+    links = Links.objects.filter(is_enabled=True).filter(Q(show_type=str(linktype)) | Q(show_type='a'))
+    commment_list = Comment.objects.filter(is_enabled=True).order_by('-id')[:blogsetting.sidebar_comment_count]
     unique_commment_list = []
     for comment in commment_list:
         if any(c.article.title == comment.article.title for c in unique_commment_list) and any(c.author.username == comment.author.username for c in unique_commment_list):
@@ -160,7 +160,7 @@ def load_sidebar(user, linktype, request):
         'sidabar_links': links,
         'show_google_adsense': blogsetting.show_google_adsense,
         'google_adsense_codes': blogsetting.google_adsense_codes,
-        'open_site_comment': blogsetting.open_site_comment,
+        'enable_site_comment': blogsetting.enable_site_comment,
         'sidebar_tags': sidebar_tags,
         'show_views_bar': blogsetting.show_views_bar,
         'show_category_bar': blogsetting.show_category_bar,
@@ -254,9 +254,8 @@ def load_article_detail(article, isindex, user):
         'article': article,
         'isindex': isindex,
         'user': user,
-        'open_site_comment': blogsetting.open_site_comment,
+        'enable_site_comment': blogsetting.enable_site_comment,
         'show_views_bar': blogsetting.show_views_bar,
-
     }
 
 

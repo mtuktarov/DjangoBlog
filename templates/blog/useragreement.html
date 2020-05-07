@@ -2,14 +2,13 @@
 {% load blog_tags %}
 {% load cache %}
 {% block header %}
-    <title>Политика конфиденциальности | {{ SITE_DESCRIPTION }}</title>
+    <title>Пользовательское соглашение | {{ SITE_NAME }}</title>
+    <meta property="og:site_name" content="{{ SITE_NAME }}"/>
     <meta name="description" content="{{ SITE_SEO_DESCRIPTION }}"/>
     <meta name="keywords" content="{{ SITE_KEYWORDS }}"/>
-    <meta property="og:type" content="blog"/>
-    <meta property="og:title" content="{{ SITE_NAME }}"/>
+    <meta property="og:title" content="Пользовательское соглашение | {{ SITE_NAME }}"/>
     <meta property="og:description" content="{{ SITE_DESCRIPTION }}"/>
-    <meta property="og:url" content="{{ SITE_BASE_URL }}"/>
-    <meta property="og:site_name" content="{{ SITE_NAME }}"/>
+    <meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}/media/editor/default_image.png"/>
 {% endblock %}
 {% block content %}
     <div id="content" role="main">

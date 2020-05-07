@@ -40,5 +40,5 @@ class OAuthUserAdmin(admin.ModelAdmin):
 
 
 class OAuthConfigAdmin(admin.ModelAdmin):
-    list_display = ('type', 'appkey', 'appsecret', 'is_enable')
+    list_display = ('type', 'appkey', 'appsecret', 'is_enabled')
     list_filter = ('type',)

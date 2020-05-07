@@ -46,7 +46,7 @@ class OAuthConfig(models.Model):
     appkey = models.CharField(max_length=200, verbose_name='AppKey')
     appsecret = models.CharField(max_length=200, verbose_name='AppSecret')
     callback_url = models.CharField(max_length=200, verbose_name='Обратный адрес', blank=False, default='')
-    is_enable = models.BooleanField('Включен', default=True, blank=False, null=False)
+    is_enabled = models.BooleanField('Включен', default=True, blank=False, null=False)
     created_time = models.DateTimeField('Время создания', default=now)
     last_mod_time = models.DateTimeField('Время редактирования', default=now)
 

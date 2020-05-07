@@ -111,7 +111,7 @@ class LinksAdmin(admin.ModelAdmin):
 
 
 class SideBarAdmin(admin.ModelAdmin):
-    list_display = ('name', 'content', 'is_enable', 'sequence')
+    list_display = ('name', 'content', 'is_enabled', 'sequence')
     exclude = ('last_mod_time', 'created_time')
 
 

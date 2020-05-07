@@ -35,7 +35,7 @@ class ArticleTest(TestCase):
         s.sequence = 1
         s.name = 'test'
         s.content = 'test content'
-        s.is_enable = True
+        s.is_enabled = True
         s.save()
 
         category = Category()

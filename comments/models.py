@@ -13,7 +13,7 @@ class Comment(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Автор', on_delete=models.CASCADE)
     article = models.ForeignKey(Article, verbose_name='Статья', on_delete=models.CASCADE)
     parent_comment = models.ForeignKey('self', verbose_name="Предыдуший комментарий", blank=True, null=True, on_delete=models.CASCADE)
-    is_enable = models.BooleanField('Включен', default=True, blank=False, null=False)
+    is_enabled = models.BooleanField('Включен', default=True, blank=False, null=False)
 
     class Meta:
         ordering = ['id']

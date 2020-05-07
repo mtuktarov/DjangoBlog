@@ -487,7 +487,7 @@ class QQOauthManager(BaseOauthManager):
 
 @cache_decorator(expiration=100 * 60)
 def get_oauth_apps():
-    configs = OAuthConfig.objects.filter(is_enable=True).all()
+    configs = OAuthConfig.objects.filter(is_enabled=True).all()
     if not configs:
         return []
     configtypes = [x.type for x in configs]

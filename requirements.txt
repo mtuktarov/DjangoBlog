@@ -19,7 +19,7 @@ lazy-object-proxy==1.4.3
 markdown2==2.3.8
 mccabe==0.6.1
 mistune==0.8.4
-Pillow==7.1.1
+Pillow==7.1.2
 pycodestyle==2.5.0
 Pygments==2.6.1
 pylint==2.4.4

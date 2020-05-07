@@ -6,11 +6,11 @@ from django.utils.html import format_html
 
 
 def disable_commentstatus(modeladmin, request, queryset):
-    queryset.update(is_enable=False)
+    queryset.update(is_enabled=False)
 
 
 def enable_commentstatus(modeladmin, request, queryset):
-    queryset.update(is_enable=True)
+    queryset.update(is_enabled=True)
 
 
 disable_commentstatus.short_description = 'Отключить комментарии'
@@ -19,9 +19,9 @@ enable_commentstatus.short_description = 'Включить комментари�
 
 class CommentAdmin(admin.ModelAdmin):
     list_per_page = 20
-    list_display = ('id', 'body', 'link_to_userinfo', 'link_to_article', 'is_enable', 'created_time')
+    list_display = ('id', 'body', 'link_to_userinfo', 'link_to_article', 'is_enabled', 'created_time')
     list_display_links = ('id', 'body')
-    list_filter = ('author', 'article', 'is_enable')
+    list_filter = ('author', 'article', 'is_enabled')
     exclude = ('created_time', 'last_mod_time')
     actions = [disable_commentstatus, enable_commentstatus]
 

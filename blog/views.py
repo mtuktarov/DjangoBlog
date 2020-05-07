@@ -7,7 +7,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.conf import settings
 from django import forms
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, HttpRequest
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from DjangoBlog.utils import cache, get_md5, get_blog_setting
@@ -131,6 +131,7 @@ class ArticleDetailView(DetailView):
         articleid = int(self.kwargs[self.pk_url_kwarg])
         comment_form = CommentForm()
         user = self.request.user
+        # meta = self.request.meta
         # If the user is already logged in, hide the email and username input boxes
         if user.is_authenticated and not user.is_anonymous and user.email and user.username:
             comment_form.fields.update({
@@ -283,7 +284,7 @@ class LinkListView(ListView):
     template_name = 'blog/links_list.html'
 
     def get_queryset(self):
-        return Links.objects.filter(is_enable=True)
+        return Links.objects.filter(is_enabled=True)
 
 
 @csrf_exempt
@@ -312,7 +313,7 @@ def fileupload(request):
                                                             type='files' if not isimage else 'image', timestr=timestr)
             if settings.TESTING:
                 basepath = settings.BASE_DIR + '/uploads'
-            url = 'https://resource.mtuktarov.com/{type}/{timestr}/{filename}'.format(
+            url = 'https://mtuktarov.ru/{type}/{timestr}/{filename}'.format(
                 type='files' if not isimage else 'image', timestr=timestr, filename=filename)
             if not os.path.exists(basepath):
                 os.makedirs(basepath)
