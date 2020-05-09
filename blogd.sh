@@ -17,7 +17,7 @@ format_arg(){
     cp /opt/blogd/config/local_settings.py /opt/blogd/DjangoBlog/local_settings.py
     cp -R /opt/blogd/media_tmp/* /opt/blogd/media
     [ $(format_arg $MAKEMIGRATIONS) = true ] && /opt/blogd/manage.py makemigrations
-    [ $(format_arg $MIGRATE) = true ] && /opt/blogd/manage.py migrate
+    [ $(format_arg $MIGRATE) = true ] && /opt/blogd/manage.py migrate --fake-initial
     [ $(format_arg $ADD_SUPERUSER) = true ] && /opt/blogd/manage.py add_superuser
     [ $(format_arg $CONFIGURE_GROUPS) = true ] && /opt/blogd/manage.py configure_groups
     [ $(format_arg $RENAME_SITE) = true ] && /opt/blogd/manage.py rename_site
