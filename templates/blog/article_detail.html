@@ -47,7 +47,7 @@
             {% endif %}
 
         </div><!-- #content -->
-        {% if article.comment_status == "o" and open_site_comment %}
+        {% if article.comment_status == "o" and enable_site_comment %}
 
             {% include 'comments/tags/comment_list.html' %}
             {% if user.is_authenticated %}
