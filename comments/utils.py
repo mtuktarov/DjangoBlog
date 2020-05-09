@@ -18,7 +18,7 @@ def send_comment_email(comment):
   username = comment.author.username
   content = render_template('new_comment.j2', vars=locals())
 
-  if content is not None:
+  # if content is not None:
     # send_email(emailto=[tomail],
     #            title='Спасибо за Ваш комментарий',
     #            content=content,
@@ -30,7 +30,7 @@ def send_comment_email(comment):
       parent_comment_url = "{}#div-comment-{}".format(article_url, comment.parent_comment.id)
       tomail = comment.parent_comment.author.email
       content = render_template('new_comment_reply.j2', vars=locals())
-      if content is not None:
+      # if content is not None:
         # send_email(emailto=[tomail],
         #            title='Новый ответ на Ваш комментарий',
         #            content=content,
