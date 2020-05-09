@@ -19,10 +19,10 @@ def send_comment_email(comment):
   content = render_template('new_comment.j2', vars=locals())
 
   if content is not None:
-    send_email(emailto=[tomail],
-               title='Спасибо за Ваш комментарий',
-               content=content,
-               images={"logo.png": "image/png", "comment_icon.png": "image/png"})
+    # send_email(emailto=[tomail],
+    #            title='Спасибо за Ваш комментарий',
+    #            content=content,
+    #            images={"logo.png": "image/png", "comment_icon.png": "image/png"})
 
   try:
     if comment.parent_comment:
@@ -31,9 +31,9 @@ def send_comment_email(comment):
       tomail = comment.parent_comment.author.email
       content = render_template('new_comment_reply.j2', vars=locals())
       if content is not None:
-        send_email(emailto=[tomail],
-                   title='Новый ответ на Ваш комментарий',
-                   content=content,
-                   images={"logo.png": "image/png", "comment_reply_icon.png": "image/png"})
+        # send_email(emailto=[tomail],
+        #            title='Новый ответ на Ваш комментарий',
+        #            content=content,
+        #            images={"logo.png": "image/png", "comment_reply_icon.png": "image/png"})
   except Exception as e:
     logger.error(e)
