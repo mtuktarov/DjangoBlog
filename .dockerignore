@@ -27,3 +27,5 @@ static
 templates
 travis_test
 .travis.yml
+static
+postgres_data
