@@ -13,6 +13,7 @@ from DjangoBlog.settings import MEDIA_URL
 from DjangoBlog.settings import MEDIA_ROOT
 from django.utils.timezone import now
 from mdeditor.fields import MDTextField
+from django.core.files.images import get_image_dimensions
 
 logger = logging.getLogger(__name__)
 

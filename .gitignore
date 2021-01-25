@@ -86,3 +86,7 @@ sockets
 ssl
 local_settings.py
 static/
+venv
+postgres_data
+static
+ssl

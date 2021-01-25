@@ -47,6 +47,11 @@ def datetimeformat(data):
 @register.filter(is_safe=True)
 @stringfilter
 def custom_markdown(content):
+    # import requests
+    # pload = {'markDownData': content}
+    # r = requests.post('http://localhost:3000/markdown', data=pload)
+    # return mark_safe(r.text)
+
     from DjangoBlog.utils import CommonMarkdown
     return mark_safe(CommonMarkdown.get_markdown(content))
 

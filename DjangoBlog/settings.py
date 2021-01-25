@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 import os, sys
-
+# SECRET_KEY = 'efbu4z-lf(01tp388=gv8*62x9p@(qz_c%$i%j9u07_5up@zfd'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'comments',
     'oauth',
     'servermanager',
-    'compressor'
+    'compressor',
 ]
 
 MIDDLEWARE = [
@@ -165,8 +165,14 @@ AUTHENTICATION_BACKENDS = ['accounts.user_login_backend.EmailOrUsernameModelBack
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
-STATICFILES = os.path.join(SITE_ROOT, 'static')
-
+# STATICFILES = os.path.join(SITE_ROOT, 'venv', 'lib', 'python3.9', 'site-packages', 'mdeditor', 'static')
+    # os.path.join(SITE_ROOT, 'static')
+# STATICFILES_DIRS = [
+# os.path.join(SITE_ROOT, 'blog', 'static'),
+# './venv/lib/python3.9/site-packages/mdeditor/static/mdeditor'
+# ,STATICFILES_FINDERS
+# ]
+# ./venv/lib/python3.9/site-packages/mdeditor/static/mdeditor/css/editormd.css
 AUTH_USER_MODEL = 'accounts.BlogUser'
 LOGIN_URL = '/login/'
 
@@ -183,11 +189,11 @@ PAGINATE_BY = 10
 # http cache timeout
 CACHE_CONTROL_MAX_AGE = 2592000
 
-DISABLE_CACHE = os.getenv('DJANGO_DISABLE_CACHE', False)
+DJANGO_DISABLE_CACHE = os.getenv('DJANGO_DISABLE_CACHE', False)
 # cache setting
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache' if DISABLE_CACHE else 'django.core.cache.backends.memcached.MemcachedCache',
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache' if DJANGO_DISABLE_CACHE else 'django.core.cache.backends.memcached.MemcachedCache',
         'LOCATION': '127.0.0.1:11211',
         'KEY_PREFIX': 'mtuktarov_test' if TESTING else 'mtuktarov',
         'TIMEOUT': 60 * 60 * 10
@@ -260,22 +266,27 @@ LOGGING = {
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # other
     'compressor.finders.CompressorFinder',
 )
 # COMPRESS_ENABLED = True
-COMPRESS_ENABLED = False
+# COMPRESS_ENABLED = False
 # COMPRESS_OFFLINE = True
 
-COMPRESS_CSS_FILTERS = [
-    # creates absolute urls from relative ones
-    # 'compressor.filters.css_default.CssAbsoluteFilter',
-    # css minimizer
-    # 'compressor.filters.cssmin.CSSMinFilter'
-]
-COMPRESS_JS_FILTERS = [
-    'compressor.filters.jsmin.JSMinFilter'
-]
+# COMPRESS_CSS_FILTERS = [
+#     'compressor.filters.css_default.CssAbsoluteFilter',
+#     'compressor.filters.cssmin.CSSMinFilter',
+#     'compressor.filters.template.TemplateFilter'
+# ]
+# COMPRESS_JS_FILTERS = [
+#     'compressor.filters.jsmin.JSMinFilter'
+# ]
+# COMPRESS_ENABLED = True
+# COMPRESS_OFFLINE = True
+# COMPRESS_PRECOMPILERS = (
+#     ('module', 'compressor_toolkit.precompilers.ES6Compiler'),
+#     ('css', 'compressor_toolkit.precompilers.SCSSCompiler'),
+# )
+
 
 MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
 MEDIA_URL = '/media/'
@@ -335,7 +346,8 @@ EMAIL_FILES = os.path.join(BASE_DIR, 'templates/email')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
-try:
-    from DjangoBlog.local_settings import *
-except ImportError:
-    pass
+#
+# try:
+#     from DjangoBlog.local_settings import *
+# except ImportError:
+#     pass

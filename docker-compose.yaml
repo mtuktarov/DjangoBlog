@@ -1,0 +1,44 @@
+version: "3"
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:12-alpine
+    env_file:
+      - /opt/blogd/config/env
+    volumes:
+      - /opt/blogd/postgres_data:/postgres_data
+    networks:
+      blogd:
+
+  blogd:
+    container_name: blogd
+    image: mtuktarov/blogd:latest
+    volumes:
+      - /opt/blogd/media:/opt/blogd/media
+      - /opt/blogd/static:/opt/blogd/static
+      - /opt/blogd/config:/opt/blogd/config
+    env_file:
+      - /opt/blogd/config/env
+    depends_on:
+      - postgres
+    networks:
+        blogd:
+
+  nginx:
+    container_name: nginx
+    image: nginx:stable-alpine
+    volumes:
+      - /opt/blogd/media:/opt/blogd/media
+      - /opt/blogd/static:/opt/blogd/static
+      - /opt/blogd/ssl:/opt/blogd/ssl
+      - /opt/blogd/config/nginx:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - blogd
+    networks:
+      blogd:
+
+networks:
+  blogd:

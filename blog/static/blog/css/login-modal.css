@@ -228,7 +228,7 @@ iframe {
     justify-content: center
 }
 
-.input_creds-form-btn {
+.input_creds-form-btn, #commentform .submit {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -253,12 +253,14 @@ iframe {
     transition: all .4s
 }
 
-.input_creds-form-btn:hover {
+.input_creds-form-btn:hover, #commentform .submit:hover {
     background: #2d2f44;
     color: #e0bf4b;
     border: 1px solid #e0bf4b;
 }
-
+#commentform .submit{
+    width: auto;
+}
 @media(max-width:992px) {
     .input_creds-form {
         width: 60%;

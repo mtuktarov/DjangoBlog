@@ -15,6 +15,7 @@ from django.shortcuts import get_object_or_404
 from blog.models import Article, Category, Tag, Links
 from comments.forms import CommentForm
 import logging
+from django.core.files.images import get_image_dimensions
 
 logger = logging.getLogger(__name__)
 
@@ -149,6 +150,14 @@ class ArticleDetailView(DetailView):
 
         kwargs['next_article'] = self.object.next_article
         kwargs['prev_article'] = self.object.prev_article
+        width, height = [0, 0]
+        try:
+            width, height = get_image_dimensions(self.object.image.file)
+        except:
+            pass
+        logger.info(f"width: {width}; height: {height}")
+        kwargs['og_image_width'] = width
+        kwargs['og_image_height'] = height
 
         return super(ArticleDetailView, self).get_context_data(**kwargs)
 

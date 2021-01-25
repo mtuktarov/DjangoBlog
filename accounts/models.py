@@ -16,6 +16,9 @@ class BlogUser(AbstractUser):
     def get_absolute_url(self):
         return reverse('blog:author_detail', kwargs={'author_name': self.username})
 
+    def get_nickname(self):
+        return self.nickname
+
     def __str__(self):
         return self.email
 

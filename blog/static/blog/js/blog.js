@@ -87,7 +87,50 @@ $(document).click(function(e) {
       }
 });
 
+$(function(){
+  $('#btnHotelSearch').click(function(){
+    $('#Hotel').val(0);
+  });
+});
 
+
+$(document).on('click', '.comment_submit', function(event) {
+	var comment_form = $(this.closest("form"));
+	var comment_value = comment_form.find('.comment_text_field:first').html();
+	comment_form.find( "textarea#id_body" ).val(comment_value);
+	comment_form.submit()
+});
+
+// jQuery(function($){
+//     $("[contenteditable]").blur(function(){
+//         var $element = $(this);
+//         if ($element.html().length && !$element.text().trim().length) {
+//             $element.empty();
+//         }
+//     });
+// });
+
+
+var target = document.querySelector('[contenteditable]');
+var observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+      if (target.textContent == '') {
+          target.innerHTML = '';
+      }
+  });    
+});
+if (target){
+    var config = { attributes: true, childList: true, characterData: true };
+    observer.observe(target, config);
+}
+// function SumitComment(){
+// 	var element = $(this)
+// 	element.closest( "input", "#id_body" ).val(element.closest("div", '.comment_text').html())
+// 	// this.closest
+//   // document.myform.myinput.value = '1';
+//   return true;
+// }
+// .closest("form").submit();
 //
 // $( ".form-signin a.btn-block" ).click(function( event ) {
 //     event.preventDefault();

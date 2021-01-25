@@ -429,7 +429,7 @@ img.wp-smiley,
 
 /* Page structure */
 .site {
-    background-color: #fff;
+    /* background-color: #fff; */
     overflow: hidden;
     font-size: medium;
 }
@@ -689,6 +689,10 @@ a.btn-nav-login{
     margin: 0 0 0 24px;
 }
 
+.markdown-body li {
+    margin: 0 0 0 0px;
+}
+
 .entry-content blockquote,
 .comment-content blockquote {
     margin-bottom: 24px;
@@ -703,7 +707,7 @@ a.btn-nav-login{
     margin-bottom: 0;
 }
 
-.entry-content code,
+/* .entry-content code,
 .comment-content code {
     font-family: Consolas, Monaco, Lucida Console, monospace;
     font-size: 12px;
@@ -713,11 +717,12 @@ a.btn-nav-login{
     background: #f6f6f6;
     padding: 2px;
     border-radius: 3px;
-}
+} */
 
 .entry-content pre,
 .comment-content pre {
-    border: 1px solid #ededed;
+    font-size: 0.857142857rem;
+    /* border: 1px solid #ededed;
     color: #666;
     font-family: Consolas, Monaco, Lucida Console, monospace;
     font-size: 12px;
@@ -727,13 +732,13 @@ a.btn-nav-login{
     margin: 1.714285714rem 0;
     overflow: auto;
     padding: 24px;
-    padding: 1.714285714rem;
+    padding: 1.714285714rem; */
 }
 
-.entry-content pre code,
+/* .entry-content pre code,
 .comment-content pre code {
     display: block;
-}
+} */
 
 .entry-content abbr,
 .comment-content abbr,
@@ -1194,8 +1199,8 @@ a.comment-edit-link:hover {
 
 /* Comment form */
 #respond {
-    margin-top: 48px;
-    margin-top: 3.428571429rem;
+    /* margin-top: 48px; */
+    /* margin-top: 3.428571429rem; */
 }
 
 #respond h3#reply-title {
@@ -1212,10 +1217,10 @@ a.comment-edit-link:hover {
     font-size: 0.857142857rem;
 }
 
-#respond form {
+/* #respond form {
     margin: 24px 0;
     margin: 1.714285714rem 0;
-}
+} */
 
 #respond form p {
     margin: 11px 0;
@@ -1969,13 +1974,14 @@ li #reply-title {
     color: #777;
 }
 
-#commentform {
+/* #commentform {
     margin-bottom: 20px;
     margin-top: 20px;
     padding: 10px 20px 20px;
     border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
     background-color: #e5e5e5;
-}
+} */
 
 #commentform p.comment-form-author {
     float: left;
@@ -2013,7 +2019,7 @@ li #reply-title {
 }
 #commentform .form-submit{
     display: inline-block;
-    width: 100%;
+    width: 0;
 }
 #commentform .form-submit #submit{
     text-align: left;
@@ -2227,6 +2233,112 @@ li #reply-title {
         background-color: inherit;
         border-top:0 none;
     }
+
+    .site-content article{
+        /* background-color: #fff; */
+        border-bottom: none;
+        margin: 0 0 10px 0;
+        box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+        border-radius: 8px;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    #page{
+        max-width: 100%;
+        padding: 0px 5px !important;
+    }
+    #secondary{
+        padding: 2rem !important;
+        border-top: 4px double #ededed;
+    }
+}
+.site-content article{
+        /* background-color: #fff; */
+        /* border-bottom: none; */
+        /* margin: 0 0 10px 0; */
+        /* box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); */
+        /* border-radius: 8px; */
+       /*  padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 12px;
+        padding-bottom: 12px; */
+    }
+body{
+    background-color: #fff;
+}
+
+#commentform form{
+    margin: 0px 20px;
+    /* margin-bottom: 20px; */
+    /* margin-top: 20px; */
+    padding: 10px 20px 20px;
+    position: relative;
+    display: block;
+    /* display: inline-block; */
+    
+}
+.comment_text_field{
+    box-shadow: 0 1px 6px #2d2f44;
+    border: transparent;
+    padding: 10px 20px 20px;
+    position: relative;
+    width: 90%;
+    /* background-color: #e5e5e5; */
+}
+
+.comment_text_field:focus{
+    box-shadow: 0 1px 6px #e0bf4b;
+}
+
+div.reply{
+    margin-bottom: 10px;
+}
+
+button.comment_submit{
+    background: url(data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2244px%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2244px%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m4.7%2015.8c-.7%201.9-1.1%203.2-1.3%203.9-.6%202.4-1%202.9%201.1%201.8s12-6.7%2014.3-7.9c2.9-1.6%202.9-1.5-.2-3.2-2.3-1.4-12.2-6.8-14-7.9s-1.7-.6-1.2%201.8c.2.8.6%202.1%201.3%203.9.5%201.3%201.6%202.3%203%202.5l5.8%201.1c.1%200%20.1.1.1.1s0%20.1-.1.1l-5.8%201.1c-1.3.4-2.5%201.3-3%202.7z%22%20fill%3D%22%232d2f44%22%2F%3E%3C%2Fsvg%3E) center no-repeat;
+    background-size: 44px 44px;
+    /* display: block; */
+    /* position: absolute; */
+    padding: 0px;
+    border: none;
+    /* background-attachment: scroll; */
+    opacity: .7;
+    /* height: 54px; */
+    min-width: 54px;
+    color: : #2d2f44;
+    font-family: Kurale;
+    font-size: 16px;
+    color: white;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+    text-decoration: none;
+    /* bottom: 0; */
+    /* right: -10px; */
+    /* text-align: left; */
+}
+
+button.comment_submit:hover {
+    background: url(data:image/svg+xml;charset=utf-8,%3Csvg%20height%3D%2244px%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2244px%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m4.7%2015.8c-.7%201.9-1.1%203.2-1.3%203.9-.6%202.4-1%202.9%201.1%201.8s12-6.7%2014.3-7.9c2.9-1.6%202.9-1.5-.2-3.2-2.3-1.4-12.2-6.8-14-7.9s-1.7-.6-1.2%201.8c.2.8.6%202.1%201.3%203.9.5%201.3%201.6%202.3%203%202.5l5.8%201.1c.1%200%20.1.1.1.1s0%20.1-.1.1l-5.8%201.1c-1.3.4-2.5%201.3-3%202.7z%22%20fill%3D%22%23e0bf4b%22%2F%3E%3C%2Fsvg%3E) center no-repeat;
+    /* background-size: 44px 44px; */
+}
+
+[contenteditable]:empty:before {
+    content: attr(placeholder);
+    color: grey;
+    display: inline-block;
+}   
+
+.form_container{
+    position: relative;
+    display: flex;
 }
 
 /*.widget-area a:visited{*/

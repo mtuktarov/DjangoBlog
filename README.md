@@ -14,8 +14,33 @@ A blog system based on `python3.6` and `Django2.1`.
 - `django-compressor` integrated, auto-compressed `css`, `js`.
 - Website exception email notification. When there is an unhandle exception, system will send an email notification.
 
+
+### Export database
+```
+pg_dump -U mtuktarov mtuktarov > dbexport.pgsql
+```
+
+### Import exported backup:
+```
+psql -h 127.0.0.1 -d mtuktarov -U mtuktarov -f dbexport.pgsql
+```
+
 ## Installation
-Install via pip: `pip install -Ur requirements.txt`
+macOS packages:
+```
+brew install jpeg zlib postgresql openssl@1.1
+export LDFLAGS="-L/usr/local/opt/zlib/lib"
+export CPPFLAGS="-I/usr/local/opt/zlib/include"
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/  
+```
+
+Create virtual environment if required and install python3 dependencies:
+
+```
+python3 -m venv <path_to_venv>
+. <path_to_venv>/bin/activate
+pip install -r requirements.txt
+```
 
 ### Configuration
 Most configurations are in `setting.py`, others are in backend configurations.
