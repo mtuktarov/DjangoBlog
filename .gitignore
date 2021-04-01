@@ -90,3 +90,4 @@ venv
 postgres_data
 static
 ssl
+.vscode

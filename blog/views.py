@@ -16,7 +16,7 @@ from blog.models import Article, Category, Tag, Links
 from comments.forms import CommentForm
 import logging
 from django.core.files.images import get_image_dimensions
-
+from django.http import Http404
 logger = logging.getLogger(__name__)
 
 
@@ -124,6 +124,8 @@ class ArticleDetailView(DetailView):
 
     def get_object(self, queryset=None):
         obj = super(ArticleDetailView, self).get_object()
+        if obj.status == 'd':
+            raise Http404()
         obj.viewed()
         self.object = obj
         return obj
